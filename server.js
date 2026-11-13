@@ -93,8 +93,7 @@ app.post('/api/transferencia', (req, res) => {
   res.json({ ok: true, operacion, saldo: usuario.saldo });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  fetch('http://127.0.0.1:8080').then(r => r.text()).then(console.log).catch(console.error)
 
 });
