@@ -4,8 +4,7 @@
   "description": "Simulador de transferencias estilo Mercado Pago",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js && node -e 'fetch('http://127.0.0.1:8080').then(r => r.text()).then(console.log).catch(console.error)'
-"
+    "start": `node server.js && node -e 'fetch('http://127.0.0.1:8080').then(r => r.text()).then(console.log).catch(console.error)'`
   },
   "dependencies": {
     "express": "^4.19.2"
