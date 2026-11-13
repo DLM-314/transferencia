@@ -54,26 +54,10 @@ document.querySelectorAll('[data-toast]').forEach(b => b.addEventListener('click
 // ---------- Logos Oficiales en SVG para Bancos ----------
 const LOGOS = {
   mercadopago: '<img id="manitos-azules" src="img/mp-azul.jpg">',
-  uala: `
-    <svg viewBox="0 0 24 24" width="16" height="16">
-      <circle cx="12" cy="12" r="11" fill="#ff2e56"/>
-      <path d="M7 8v5a5 5 0 0 0 10 0V8h-2.5v5a2.5 2.5 0 0 1-5 0V8H7z" fill="#fff"/>
-    </svg>`,
-  brubank: `
-    <svg viewBox="0 0 24 24" width="16" height="16">
-      <circle cx="12" cy="12" r="11" fill="#6930c3"/>
-      <text x="12" y="16" font-size="12" font-weight="900" fill="#fff" text-anchor="middle" font-family="sans-serif">b</text>
-    </svg>`,
-  santander: `
-    <svg viewBox="0 0 24 24" width="16" height="16">
-      <circle cx="12" cy="12" r="11" fill="#ec0000"/>
-      <path d="M12 6c-3 0-5 2-5 4 0 3 4 3 4 5 0 1-1 1-2 1s-2-.5-2-1H6c0 2 2 3 4 3 3 0 5-2 5-4 0-3-4-3-4-5 0-1 1-1 2-1s2 .5 2 1h1c0-2-2-3-4-3z" fill="#fff"/>
-    </svg>`,
-  galicia: `
-    <svg viewBox="0 0 24 24" width="16" height="16">
-      <circle cx="12" cy="12" r="11" fill="#ff5a00"/>
-      <circle cx="12" cy="12" r="5" fill="#fff"/>
-    </svg>`
+  uala: `<img style="width: 100%; border-radius: 100%" src="img/uala.jpg">`,
+  brubank: `<img style="width: 100%; border-radius: 100%" src="img/brubank.png">`,
+  santander: `<img style="width: 100%; border-radius: 100%" src="img/santander.png">`,
+  galicia: `<img style="width: 100%; border-radius: 100%" src="img/galicia.png">`
 };
 
 // ---------- Estado con Usuario MARIANO MARTÍNEZ ----------
@@ -83,11 +67,12 @@ let montoStr = '0';
 
 // ---------- Lista de Contactos Inventados ----------
 const sugeridos = [
-  { iniciales: 'AM', nombre: 'Alexandra Marcela Sosa Muñiz', alias: 'showsport.ms', banco: 'Mercado Pago', tipo: 'mercadopago' },
+  { iniciales: 'AM', nombre: 'Alexandra Marcela Sosa Muñiz', alias: 'perro.cinta.calle', banco: 'Brubank', tipo: 'brubank' },
   { iniciales: 'BM', nombre: 'Bautista Melgarejo', alias: 'bautimelgarejo.mp', banco: 'Mercado Pago', tipo: 'mercadopago' },
   { iniciales: 'MM', nombre: 'Mariano Rodrigo Martinez', alias: 'marianomart93', banco: 'Mercado Pago', tipo: 'mercadopago' },
+  {'iniciales': 'RP', 'nombre':'Raúl Perez', 'alias':'coche.radio.alojo', 'banco':'Galicia', 'tipo':'galicia'},
   { iniciales: 'CP', nombre: 'Cecilia Beatriz Perez', alias: 'comedor.fcs', banco: 'Mercado Pago', tipo: 'mercadopago' },
-  { iniciales: 'SL', nombre: 'Santiago Tomas Luna', alias: 'santiluna1590', banco: 'Mercado Pago', tipo: 'mercadopago' }
+  { iniciales: 'SL', nombre: 'Santiago Tomas Luna', alias: 'santiluna1590', banco: 'Banco Santander', tipo: 'santander' }
 ];
 
 async function recientes() {
