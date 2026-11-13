@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mercado Pago</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= INICIO (PANTALLA PRINCIPAL) ================= -->
+  <section class="pantalla activa" id="inicio">
+    
+    <!-- Barra de Estado Android -->
+    <div class="status-bar">
+      <span>14:44</span>
+      <div class="status-iconos">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 3C7.5 3 3.8 4.9 1.3 8L12 21 22.7 8C20.2 4.9 16.5 3 12 3z"/></svg>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M2 22h20V2z"/></svg>
+        <span>61%</span>
+      </div>
+    </div>
+
+    <!-- Header Amarillo MP -->
+    <header class="mp-header">
+      <div class="mp-user">
+        <div class="mp-avatar-circle">
+          <img src="img/mp-azul.jpg" style="width: 100%; border-radius: 100%;">
+        </div>
+        <div class="mp-saludo">
+          <span>Hola, <strong id="nombre-usuario">Mariano Martínez</strong></span>
+        </div>
+      </div>
+      <div class="mp-header-actions">
+        <button class="mp-btn-icon" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+        <button class="mp-btn-icon notif" aria-label="Notificaciones">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <span class="badge">11</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mp-scroll-content">
+      <!-- Tabs superiores -->
+      <div class="mp-tabs-wrapper">
+        <div class="mp-tabs">
+          <button class="mp-tab activo">Pesos</button>
+          <button class="mp-tab">Dólares</button>
+          <button class="mp-tab">Reservas</button>
+          <button class="mp-tab">Inversiones</button>
+        </div>
+
+        <!-- Tarjeta de Saldo Principal -->
+        <div class="mp-card-saldo">
+          <div class="mp-saldo-head">
+            <div class="mp-saldo-valor">
+              <span class="mp-saldo-monto">$ <span id="saldo-entero">323.432</span><sup id="saldo-centavos">28</sup></span>
+              <button class="mp-btn-ojo" id="btn-ocultar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2.2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3.2"></circle>
+                </svg>
+              </button>
+            </div>
+            <span class="mp-flecha-saldo">›</span>
+          </div>
+
+          <div class="mp-rinde">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="#00a650"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+            <span>Rinde 19,7%</span>
+          </div>
+
+          <!-- Botones de Acción (Iconos exactos MP) -->
+          <div class="mp-accesos-grid">
+            <!-- Ingresar -->
+            <button class="mp-acceso-btn" data-toast="Ingresar dinero">
+              <div class="mp-acceso-icono">
+                <svg viewBox="0 0 34 34" width="28" height="28" fill="none">
+                  <rect x="3" y="12" width="28" height="16" rx="4" stroke="currentColor" stroke-width="2.2"/>
+                  <circle cx="17" cy="20" r="3.2" stroke="currentColor" stroke-width="2.2"/>
+                  <path d="M7 16v8M27 16v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M17 3v9M13 8l4 4 4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span>Ingresar</span>
+            </button>
+
+            <!-- Transferir -->
+            <button class="mp-acceso-btn" data-ir="destino">
+              <div class="mp-acceso-icono">
+                <svg viewBox="0 0 34 34" width="28" height="28" fill="none">
+                  <rect x="3" y="9" width="28" height="17" rx="4" stroke="currentColor" stroke-width="2.2"/>
+                  <circle cx="17" cy="17.5" r="3.2" stroke="currentColor" stroke-width="2.2"/>
+                  <path d="M8 13.5v8M26 13.5v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span>Transferir</span>
+            </button>
+
+            <!-- Tus alias -->
+            <button class="mp-acceso-btn" data-toast="CVU y Alias copiados">
+              <div class="mp-acceso-icono">
+                <svg viewBox="0 0 34 34" width="28" height="28" fill="none">
+                  <rect x="3" y="6" width="28" height="22" rx="4" stroke="currentColor" stroke-width="2.2"/>
+                  <circle cx="11.5" cy="15" r="2.8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 23c0-2.3 2-4 4.5-4s4.5 1.7 4.5 4" stroke="currentColor" stroke-width="2"/>
+                  <path d="M20 14h7M20 19h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span>Tus alias</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección Créditos -->
+      <section class="mp-seccion">
+        <div class="mp-seccion-header">
+          <h3>Créditos</h3>
+          <button class="mp-link-seccion">Consultar →</button>
+        </div>
+        <div class="mp-card mp-card-credito">
+          <div>
+            <p class="mp-card-subtitulo">Mercado Crédito para pagar en hasta 3x</p>
+            <p class="mp-credito-monto">$ 112.000</p>
+          </div>
+          <button class="mp-btn-azul-sm">Conocer</button>
+        </div>
+      </section>
+
+      <!-- Sección Beneficios -->
+      <section class="mp-seccion">
+        <div class="mp-seccion-header">
+          <h3>Beneficios</h3>
+          <button class="mp-link-seccion">Conocer todos →</button>
+        </div>
+        <div class="mp-beneficios-scroll">
+          <div class="mp-card mp-card-beneficio cabify">
+            <div class="mp-beneficio-body">
+              <span class="mp-tag-descuento">100% OFF en Cabify</span>
+              <span class="mp-promo-link">Usar beneficio →</span>
+            </div>
+            <div class="mp-beneficio-avatar">
+              <div class="mp-cabify-pill">cabify</div>
+            </div>
+          </div>
+          
+          <div class="mp-card mp-card-beneficio promo">
+            <div class="mp-beneficio-body">
+              <span class="mp-badge-amarillo">Sólo por hoy</span>
+              <p class="mp-promo-tit">Cyber Monday</p>
+              <span class="mp-promo-sub">OFF y 18 cuotas sin interés</span>
+              <span class="mp-promo-link" style="margin-top: 6px;">Usar beneficio →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Botón Flotante con ESTRELLITAS ORIGINALES EN DEGRADÉ -->
+      <button class="mp-fab-asistente" aria-label="Asistente" id="btnPantallaCompleta">
+        <svg viewBox="0 0 36 36" width="24" height="24">
+          <defs>
+            <linearGradient id="mpSparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4054f5"/>
+              <stop offset="100%" stop-color="#6930c3"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#mpSparkleGrad)" d="M19 3 C19 10.5 13 16 6 16 C13 16 19 21.5 19 29 C19 21.5 25 16 32 16 C25 16 19 10.5 19 3 Z"/>
+          <path fill="url(#mpSparkleGrad)" d="M9 25 C9 28 6.5 30 4 30 C6.5 30 9 32 9 35 C9 32 11.5 30 14 30 C11.5 30 9 28 9 25 Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Barra de Navegación Inferior -->
+    <nav class="mp-bottom-nav">
+      <button class="mp-nav-item activo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-5-7L2 9h19L11 3z"/></svg>
+        <span>Cuenta</span>
+      </button>
+
+      <button class="mp-nav-item" data-toast="Tarjetas">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        <span>Tarjetas</span>
+      </button>
+
+      <div class="mp-nav-qr-wrapper">
+        <button class="mp-nav-qr-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+            <path d="M3 7V3h4M17 3h4v4M21 17v4h-4M7 21H3v-4"/>
+            <rect x="7" y="7" width="3" height="3" fill="#fff"/>
+            <rect x="14" y="7" width="3" height="3" fill="#fff"/>
+            <rect x="7" y="14" width="3" height="3" fill="#fff"/>
+          </svg>
+        </button>
+        <span class="mp-nav-qr-label">QR</span>
+      </div>
+
+      <button class="mp-nav-item" data-toast="Servicios">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M12 7v5M10 9h4"/></svg>
+        <span>Servicios</span>
+      </button>
+
+      <button class="mp-nav-item" data-ir="actividad">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="15" y2="17"/><path d="M18 17h4M20 15v4"/></svg>
+        <span>Más</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- ================= TRANSFERIR: LISTA CON BANCOS REALES ================= -->
+  <section class="pantalla" id="destino">
+    <div class="top-nav-row">
+      <button class="mp-btn-back-pill" data-volver>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="top-actions-pills">
+        <button class="mp-btn-pill-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </button>
+        <button class="mp-btn-pill-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mp-transfer-header-row">
+      <h2>Transferir</h2>
+      <div class="mp-currency-switch">
+        <button class="active"><span>🇦🇷</span> Pesos</button>
+        <button><span>🇺🇸</span></button>
+      </div>
+    </div>
+
+    <div class="mp-search-container">
+      <div class="mp-search-box">
+        <input type="text" id="input-alias" placeholder="Alias, CBU/CVU, celular o nombre" autocomplete="off">
+        <button class="mp-cam-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#666" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mp-contact-section">
+      <h3 class="mp-section-label">Sugeridos</h3>
+      <ul class="mp-contact-list" id="lista-contactos-sugeridos"></ul>
+
+      <h3 class="mp-section-label" style="margin-top: 22px;">Recientes</h3>
+      <ul class="mp-contact-list" id="lista-contactos-recientes"></ul>
+    </div>
+  </section>
+
+  <!-- ================= MONTO CON TECLADO ================= -->
+  <section class="pantalla" id="monto">
+    <div class="top-nav-row">
+      <button class="mp-btn-back-pill" data-volver>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="mp-screen-pad">
+      <h2 class="mp-main-title">Ingresá el monto</h2>
+
+      <div class="mp-target-row">
+        <div class="mp-target-badge" id="monto-badge-icon"></div>
+        <div class="mp-target-meta">
+          <strong id="monto-nombre">BAUTISTA MELGAREJO</strong>
+          <span>Alias: <span id="monto-alias">bautimelgarejo.mp</span></span>
+          <button class="mp-motivo-link">Motivo: Varios →</button>
+        </div>
+      </div>
+
+      <div class="mp-monto-box">
+        <div class="mp-monto-valor">
+          <span class="signo">$</span>
+          <span class="cifra" id="monto-texto">0</span>
+          <span class="cursor-blink">|</span>
+        </div>
+        <p class="mp-disponible-line">
+          Disponible: <span id="monto-disponible">$ 323.432,28</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#2554d7" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3.2"/></svg>
+        </p>
+      </div>
+
+      <div class="mp-chips-montos">
+        <button class="mp-chip-btn" onclick="fijarMonto(3334)">$ 3.334</button>
+        <button class="mp-chip-btn" onclick="fijarMonto(4800)">$ 4.800</button>
+        <button class="mp-chip-btn" onclick="fijarMonto(46000)">$ 46.000</button>
+      </div>
+
+      <p class="error" id="error-monto"></p>
+      <button class="mp-btn-action-primary" id="btn-continuar-monto">Continuar</button>
+    </div>
+
+    <!-- FAB Asistente -->
+    <div class="mp-fab-asistente inside-screen">
+      <svg viewBox="0 0 36 36" width="22" height="22">
+        <path fill="url(#mpSparkleGrad)" d="M19 3 C19 10.5 13 16 6 16 C13 16 19 21.5 19 29 C19 21.5 25 16 32 16 C25 16 19 10.5 19 3 Z"/>
+        <path fill="url(#mpSparkleGrad)" d="M9 25 C9 28 6.5 30 4 30 C6.5 30 9 32 9 35 C9 32 11.5 30 14 30 C11.5 30 9 28 9 25 Z"/>
+      </svg>
+    </div>
+
+    <div class="mp-keyboard-android" id="teclado-monto"></div>
+  </section>
+
+  <!-- ================= CONFIRMACIÓN Y MEDIO DE PAGO ================= -->
+  <section class="pantalla" id="confirmar">
+    <div class="top-nav-row">
+      <button class="mp-btn-back-pill" data-volver>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="mp-screen-pad">
+      <div class="mp-target-row minimal">
+        <div class="mp-target-badge" id="confirmar-badge-icon"></div>
+        <div class="mp-target-meta">
+          <strong id="confirmar-nombre">BAUTISTA MELGAREJO</strong>
+          <span>Alias: <span id="confirmar-alias">bautimelgarejo.mp</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Sheet de Medio de Pago -->
+    <div class="mp-card-payment-bottom">
+      
+      <!-- Fila de Total IDÉNTICA -->
+      <div class="mp-total-row">
+        <span>Total</span>
+        <strong id="confirmar-monto">$ 2</strong>
+      </div>
+
+      <!-- Tarjeta Negra con Logo blanco y Marca de agua -->
+      <div class="mp-cards-carousel">
+        <div class="mp-dark-card">
+          <!-- Marcas de agua diagonales de fondo -->
+          <div class="mp-watermark-pattern">MER<br>CADO<br>PAGO</div>
+
+          <div class="mp-dark-card-inner">
+            <div class="mp-dark-card-top">
+              <div class="mp-circle-outline">
+                <img src="img/mp-blanco.png" style="width: 100%; border-radius: 100%;">
+              </div>
+              <div class="mp-dark-balance"><strong>$ 323.432,28 </strong><span style="font-size: 0.95rem;">👁</span></div>
+            </div>
+            
+            <div class="mp-pill-disponible">DINERO DISPONIBLE</div>
+          </div>
+
+          <div class="mp-card-green-strip">Sin comisión</div>
+        </div>
+
+        <div class="mp-card-peek-red"></div>
+      </div>
+
+      <!-- Indicador de Puntos -->
+      <div class="mp-carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+      <!-- FAB Asistente sobre tarjeta -->
+      <div class="mp-fab-asistente on-card">
+        <svg viewBox="0 0 36 36" width="22" height="22">
+          <path fill="url(#mpSparkleGrad)" d="M19 3 C19 10.5 13 16 6 16 C13 16 19 21.5 19 29 C19 21.5 25 16 32 16 C25 16 19 10.5 19 3 Z"/>
+          <path fill="url(#mpSparkleGrad)" d="M9 25 C9 28 6.5 30 4 30 C6.5 30 9 32 9 35 C9 32 11.5 30 14 30 C11.5 30 9 28 9 25 Z"/>
+        </svg>
+      </div>
+
+      <div class="mp-btn-container">
+        <button class="mp-btn-action-primary" id="btn-ir-pin">Transferir</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESANDO ================= -->
+  <section class="pantalla" id="procesando">
+    <div class="centro">
+      <div class="spinner"></div>
+      <p style="font-weight: 600; color: #333; margin-top: 14px;">Procesando tu transferencia...</p>
+    </div>
+  </section>
+
+  <!-- ================= COMPROBANTE FINAL ================= -->
+  <section class="pantalla" id="comprobante">
+    <div class="top-nav-row justify-end">
+      <button class="mp-btn-back-pill" id="btn-cerrar-comprobante">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="mp-screen-pad">
+      <div class="mp-check-circle-green">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h2 class="mp-title-transferiste">Transferiste <span id="comp-monto">$ 2</span></h2>
+
+      <div class="mp-target-row minimal" style="margin-top: 16px;">
+        <div class="mp-target-badge" id="comp-badge-icon"></div>
+        <div class="mp-target-meta">
+          <strong id="comp-nombre">BAUTISTA MELGAREJO</strong>
+          <span>Alias: <span id="comp-alias">bautimelgarejo.mp</span></span><br>
+          <span id="comp-banco" style="color: #666; font-size: 0.82rem;">Mercado Pago</span>
+        </div>
+      </div>
+
+      <!-- Tarjeta Seguro de Cuenta -->
+      <div class="mp-banner-seguro">
+        <button class="mp-close-seguro">✕</button>
+        <div class="mp-seguro-text">
+          <span class="mp-tag-seguro">Seguro de Cuenta</span>
+          <h4>Recuperá tu dinero si se dañan o si te roban tus compras con Mercado Pago</h4>
+          <span class="mp-link-seguro">Conocer →</span>
+        </div>
+        <div class="mp-seguro-shield">
+          <svg viewBox="0 0 60 60" width="56" height="56">
+            <path d="M30 6 L50 14 V32 C50 44 30 54 30 54 C30 54 10 44 10 32 V14 Z" fill="#d9b674"/>
+            <path d="M23 30 L28 35 L38 24" fill="none" stroke="#684a16" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- FAB Asistente -->
+      <div class="mp-fab-asistente under-seguro">
+        <svg viewBox="0 0 36 36" width="22" height="22">
+          <path fill="url(#mpSparkleGrad)" d="M19 3 C19 10.5 13 16 6 16 C13 16 19 21.5 19 29 C19 21.5 25 16 32 16 C25 16 19 10.5 19 3 Z"/>
+          <path fill="url(#mpSparkleGrad)" d="M9 25 C9 28 6.5 30 4 30 C6.5 30 9 32 9 35 C9 32 11.5 30 14 30 C11.5 30 9 28 9 25 Z"/>
+        </svg>
+      </div>
+
+      <div class="mp-comprobante-actions">
+        <button class="mp-btn-action-primary flex-center" data-toast="Comprobante listo para enviar">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Compartir comprobante
+        </button>
+        <button class="mp-btn-action-soft" id="btn-otra-transferencia">
+          Hacer otra transferencia
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ACTIVIDAD ================= -->
+  <section class="pantalla" id="actividad">
+    <div class="top-nav-row">
+      <button class="mp-btn-back-pill" data-volver>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2554d7" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <h2 style="font-size: 1.15rem; font-weight: 700;">Tu actividad</h2>
+    </div>
+    <ul class="mp-contact-list" id="lista-movimientos" style="padding: 16px;"></ul>
+  </section>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

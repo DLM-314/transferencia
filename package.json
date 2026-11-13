@@ -1,0 +1,12 @@
+{
+  "name": "transferencia-mp",
+  "version": "1.0.0",
+  "description": "Simulador de transferencias estilo Mercado Pago",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,991 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  font-family: proxima nova, -apple-system, roboto, arial, sans-serif, sans-serif;
+}
+
+:root {
+  --mp-amarillo: #ffe600;
+  --mp-azul-primario: #3454f5;
+  --mp-azul-osc: #223fcd;
+  --mp-azul-pill: #edf3fe;
+  --mp-azul-link: #2554d7;
+  --mp-verde: #00a650;
+  --mp-bg: #ffffff;
+  --mp-bg-gris: #f5f5f5;
+  --mp-text: #1a1a1a;
+  --mp-gris: #666666;
+  --mp-gris-borde: #e0e0e0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #1e1e1e;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 412px;
+  height: 100vh;
+  max-height: 840px;
+  background: var(--mp-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 500px) {
+  .app {
+    border-radius: 36px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Pantallas y Navegación */
+.pantalla {
+  position: absolute;
+  inset: 0;
+  background: var(--mp-bg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1);
+  visibility: hidden;
+  z-index: 1;
+}
+.pantalla.activa {
+  transform: translateX(0);
+  visibility: visible;
+  z-index: 2;
+}
+
+/* Barra de Estado Android */
+.status-bar {
+  background: var(--mp-amarillo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 18px 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #111;
+}
+.status-iconos {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Header Amarillo */
+.mp-header {
+  background: var(--mp-amarillo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px 14px;
+}
+.mp-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mp-avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.mp-saludo {
+  font-size: 1.05rem;
+  color: #000;
+  font-weight: 400;
+}
+.mp-saludo strong {
+  font-weight: 700;
+}
+.mp-header-actions {
+  display: flex;
+  gap: 8px;
+}
+.mp-btn-icon {
+  background: rgba(255, 255, 255, 0.75);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  position: relative;
+  cursor: pointer;
+}
+.mp-btn-icon.notif .badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #f23d4f;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 10px;
+}
+
+/* Pestañas de monedas */
+.mp-tabs-wrapper {
+  background: var(--mp-amarillo);
+  padding: 0 16px 16px;
+}
+.mp-tabs {
+  display: flex;
+  gap: 18px;
+  padding: 4px 4px 14px;
+}
+.mp-tab {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+}
+.mp-tab.activo {
+  color: #000;
+  font-weight: 700;
+}
+
+/* Tarjeta de Saldo */
+.mp-card-saldo {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+.mp-saldo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mp-saldo-valor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mp-saldo-monto {
+  font-size: 2.15rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+.mp-saldo-monto sup {
+  font-size: 1.1rem;
+  top: -0.6em;
+}
+.mp-btn-ojo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+}
+.mp-flecha-saldo {
+  font-size: 1.8rem;
+  color: var(--mp-azul-link);
+  font-weight: 300;
+}
+.mp-rinde {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--mp-verde);
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Accesos rápidos con iconos exactos */
+.mp-accesos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+.mp-acceso-btn {
+  background: var(--mp-azul-pill);
+  border: none;
+  border-radius: 16px;
+  padding: 14px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.mp-acceso-icono {
+  color: var(--mp-azul-link);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mp-acceso-btn span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mp-azul-link);
+}
+
+/* FAB Asistente con degradado exacto */
+.mp-fab-asistente {
+  position: absolute;
+  right: 18px;
+  bottom: 84px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff775 10%, #ffd400 90%);
+  border: none;
+  box-shadow: 0 4px 14px rgba(255, 212, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+.mp-fab-asistente.inside-screen {
+  position: absolute;
+  top: 110px;
+  right: 18px;
+  bottom: auto;
+}
+.mp-fab-asistente.on-card {
+  position: absolute;
+  top: -24px;
+  right: 18px;
+}
+.mp-fab-asistente.under-seguro {
+  position: absolute;
+  bottom: 120px;
+  right: 18px;
+}
+
+/* Barra inferior */
+.mp-bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #fff;
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 10;
+}
+.mp-nav-item {
+  flex: 1;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #666;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.mp-nav-item.activo {
+  color: var(--mp-azul-link);
+}
+.mp-nav-qr-wrapper {
+  position: relative;
+  top: -14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mp-nav-qr-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--mp-azul-link);
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(37, 84, 215, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.mp-nav-qr-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mp-azul-link);
+}
+
+/* Secciones de Inicio */
+.mp-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+  position: relative;
+}
+.mp-seccion {
+  padding: 16px 16px 0;
+}
+.mp-seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.mp-seccion-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111;
+}
+.mp-link-seccion {
+  background: none;
+  border: none;
+  color: var(--mp-azul-link);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.mp-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #ebebeb;
+}
+.mp-card-credito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mp-card-subtitulo {
+  font-size: 0.88rem;
+  color: #333;
+  margin-bottom: 4px;
+}
+.mp-credito-monto {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.mp-btn-azul-sm {
+  background: var(--mp-azul-primario);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+/* Beneficios */
+.mp-beneficios-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.mp-card-beneficio {
+  min-width: 260px;
+  height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.mp-beneficio-body {
+  display: flex;
+  flex-direction: column;
+}
+.mp-tag-descuento {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.mp-promo-link {
+  color: var(--mp-azul-link);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.mp-cabify-pill {
+  background: #7145d6;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+.mp-badge-amarillo {
+  background: #ffea79;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+.mp-promo-tit {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+.mp-promo-sub {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+/* Pantalla Transferir */
+.top-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+}
+.top-nav-row.justify-end {
+  justify-content: flex-end;
+}
+.mp-btn-back-pill {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--mp-azul-pill);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.top-actions-pills {
+  display: flex;
+  gap: 10px;
+}
+.mp-btn-pill-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--mp-azul-pill);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mp-transfer-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px 12px;
+}
+.mp-transfer-header-row h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+.mp-currency-switch {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--mp-gris-borde);
+  border-radius: 20px;
+  padding: 2px;
+}
+.mp-currency-switch button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  border-radius: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.mp-currency-switch button.active {
+  border: 1.5px solid var(--mp-azul-link);
+  color: var(--mp-azul-link);
+}
+.mp-search-container {
+  padding: 0 16px 12px;
+}
+.mp-search-box {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--mp-gris-borde);
+  border-radius: 12px;
+  padding: 0 14px;
+}
+.mp-search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 14px 0;
+  font-size: 0.95rem;
+}
+.mp-search-box:focus-within {
+  border-color: var(--mp-azul-link);
+}
+.mp-cam-icon {
+  background: none;
+  border: none;
+  display: flex;
+}
+.mp-contact-section {
+  padding: 8px 16px 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+.mp-section-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.mp-contact-list {
+  list-style: none;
+}
+.mp-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.mp-contact-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+.mp-contact-info {
+  flex: 1;
+}
+.mp-contact-info strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #222;
+}
+.mp-contact-info small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 0.85rem;
+}
+.mp-bank-icon-badge {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.badge-vos {
+  background: var(--mp-azul-pill);
+  color: var(--mp-azul-link);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+.mp-dots-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* Pantalla Monto */
+.mp-screen-pad {
+  padding: 4px 16px 16px;
+  position: relative;
+  flex: 1;
+}
+.mp-main-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.mp-target-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.mp-target-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #d5e0f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mp-target-meta strong {
+  display: block;
+  font-size: 0.98rem;
+  text-transform: uppercase;
+}
+.mp-target-meta span {
+  font-size: 0.88rem;
+  color: #555;
+}
+.mp-motivo-link {
+  background: none;
+  border: none;
+  color: var(--mp-azul-link);
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: block;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.mp-monto-box {
+  margin: 10px 0 16px;
+}
+.mp-monto-valor {
+  display: flex;
+  align-items: center;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1;
+}
+.mp-monto-valor .signo {
+  margin-right: 6px;
+}
+.cursor-blink {
+  font-weight: 200;
+  color: var(--mp-azul-link);
+  margin-left: 2px;
+  animation: parpadeo 0.9s infinite;
+}
+.mp-disponible-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+  font-size: 0.88rem;
+  margin-top: 8px;
+}
+.mp-chips-montos {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+.mp-chip-btn {
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+}
+.mp-btn-action-primary {
+  width: 100%;
+  background: var(--mp-azul-primario);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.mp-btn-action-soft {
+  width: 100%;
+  background: var(--mp-azul-pill);
+  color: var(--mp-azul-link);
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Teclado Android */
+.mp-keyboard-android {
+  background: #1e2227;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px 6px 16px;
+  gap: 6px;
+  margin-top: auto;
+}
+.mp-keyboard-android button {
+  background: #2b313a;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1.4rem;
+  height: 52px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mp-keyboard-android button.action-col {
+  background: #39424e;
+}
+.mp-keyboard-android button.enter-btn {
+  background: #395279;
+}
+
+/* Bottom Sheet Medio de Pago */
+.mp-card-payment-bottom {
+  margin-top: auto;
+  background: #fff;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+  padding: 22px 16px 20px;
+  position: relative;
+}
+.mp-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.mp-total-row span {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #222;
+}
+.mp-total-row strong {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Tarjeta Negra Mercado Pago */
+.mp-cards-carousel {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0 10px;
+  overflow: hidden;
+}
+.mp-dark-card {
+  width: 86%;
+  background: #1e222a;
+  border-radius: 16px;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+.mp-watermark-pattern {
+  position: absolute;
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  line-height: 80%;
+  top: -4%;
+  right: -10%;
+}
+.mp-dark-card-inner {
+  padding: 16px 14px 12px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+.mp-dark-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mp-circle-outline {
+  width: 45px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mp-dark-balance {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.mp-pill-disponible {
+  background: #ffffff;
+  color: #616161;
+  border-radius: 14px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  align-self: flex-end;
+  margin-right: -8%;
+}
+.mp-card-green-strip {
+  background: var(--mp-verde);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 0;
+  position: relative;
+  z-index: 2;
+}
+.mp-card-peek-red {
+  width: 14%;
+  background: #ff5252;
+  border-radius: 16px;
+}
+.mp-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.mp-carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.mp-carousel-dots .dot.active {
+  width: 22px;
+  border-radius: 6px;
+  background: #333;
+}
+
+/* Comprobante */
+.mp-check-circle-green {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--mp-verde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 16px;
+}
+.mp-title-transferiste {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.mp-banner-seguro {
+  background: var(--mp-azul-pill);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 26px 0;
+  position: relative;
+}
+.mp-close-seguro {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+.mp-tag-seguro {
+  font-size: 0.75rem;
+  color: var(--mp-azul-link);
+  font-weight: 700;
+}
+.mp-seguro-text h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #222;
+  margin: 4px 0 8px;
+}
+.mp-link-seguro {
+  color: var(--mp-azul-link);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.mp-comprobante-actions {
+  margin-top: 40px;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.error {
+  color: #e60012;
+  font-size: 0.88rem;
+  min-height: 20px;
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #eaeaea;
+  border-top-color: var(--mp-azul-primario);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+.centro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#manitos-azules {
+  width: 20px;
+  border-radius: 100px;
+}
+
+#monto-badge-icon #manitos-azules {
+  width: 100%;
+  border-radius: 100%;
+}
+
+#confirmar-badge-icon #manitos-azules {
+  width: 100%;
+  border-radius: 100%;
+}
+
+#comp-badge-icon #manitos-azules {
+  width: 100%;
+  border-radius: 100%;
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+@keyframes parpadeo { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
