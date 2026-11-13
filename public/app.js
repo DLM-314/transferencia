@@ -70,7 +70,7 @@ const sugeridos = [
   { iniciales: 'AM', nombre: 'Alexandra Marcela Sosa Muñiz', alias: 'perro.cinta.calle', banco: 'Brubank', tipo: 'brubank' },
   { iniciales: 'BM', nombre: 'Bautista Melgarejo', alias: 'bautimelgarejo.mp', banco: 'Mercado Pago', tipo: 'mercadopago' },
   { iniciales: 'MM', nombre: 'Mariano Rodrigo Martinez', alias: 'marianomart93', banco: 'Mercado Pago', tipo: 'mercadopago' },
-  {'iniciales': 'RP', 'nombre':'Raúl Perez', 'alias':'coche.radio.alojo', 'banco':'Galicia', 'tipo':'galicia'},
+  {'iniciales': 'RP', 'nombre':'Raúl Perez', 'alias':'coche.radio.alojo', 'banco':'Mercado Pago', 'tipo':'mercadopago'},
   { iniciales: 'CP', nombre: 'Cecilia Beatriz Perez', alias: 'comedor.fcs', banco: 'Mercado Pago', tipo: 'mercadopago' },
   { iniciales: 'SL', nombre: 'Santiago Tomas Luna', alias: 'santiluna1590', banco: 'Banco Santander', tipo: 'santander' }
 ];
