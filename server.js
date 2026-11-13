@@ -95,4 +95,6 @@ app.post('/api/transferencia', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  fetch('http://127.0.0.1:8080').then(r => r.text()).then(console.log).catch(console.error)
+
 });
